@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MerchantRootActivity">
+
+    <!-- 内容区域 -->
+    <FrameLayout
+        android:id="@+id/ly_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rg_tab"/>
+
+    <!-- 商家底部导航栏 -->
+    <RadioGroup
+        android:id="@+id/rg_tab"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- 饮品管理 -->
+        <RadioButton
+            android:id="@+id/rb_drinks"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/order"
+            android:gravity="center"
+            android:text="@string/drinks"
+            android:textSize="12sp"
+            tools:ignore="VisualLintButtonSize" />
+
+        <!-- 商家订单 -->
+        <RadioButton
+            android:id="@+id/rb_orders"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/bill"
+            android:gravity="center"
+            android:text="@string/orders"
+            android:textSize="12sp"
+            tools:ignore="VisualLintButtonSize" />
+
+        <!-- 商家资料 -->
+        <RadioButton
+            android:id="@+id/rb_profile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/profile"
+            android:textSize="12sp"
+            tools:ignore="VisualLintButtonSize" />
+    </RadioGroup>
+
+</RelativeLayout>

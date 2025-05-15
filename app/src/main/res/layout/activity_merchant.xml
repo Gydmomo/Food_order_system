@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/etDrinkName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="饮品名称"/>
+
+        <EditText
+            android:id="@+id/etDrinkType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="饮品类型"/>
+
+        <EditText
+            android:id="@+id/etPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="价格"/>
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="top"
+            android:hint="描述"/>
+
+        <Spinner
+            android:id="@+id/spinnerImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/drink_images"/>
+
+        <Button
+            android:id="@+id/btnAddDrink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加饮品"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
