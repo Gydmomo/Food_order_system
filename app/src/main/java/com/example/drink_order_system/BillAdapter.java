@@ -48,13 +48,17 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         if ("备餐".equals(order.getStatus())) {
             holder.btnConfirm.setVisibility(View.VISIBLE);
             holder.btnConfirm.setOnClickListener(v -> {
+                // 解析出原始订单号（去掉"订单号: "前缀）
+                String displayedId = order.getOrderNumber();
+                String originalId = displayedId.replace("订单号: ", "").trim(); // 清除前缀和空格
+
                 // 更新本地数据
                 order.setStatus("已送达");
 
-                // 更新数据库
-                updateOrderStatus(order.getOrderNumber());
+                // 更新数据库（传递正确的原始ID）
+                updateOrderStatus(originalId);
 
-                // 刷新UI
+                // 刷新当前项
                 notifyItemChanged(holder.getAdapterPosition());
             });
         } else {

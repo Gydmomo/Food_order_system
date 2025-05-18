@@ -22,6 +22,10 @@
             android:label="商家界面"
             android:exported="false" />
         <activity
+            android:name=".EditProfileActivity"
+            android:label="编辑个人信息界面"
+            android:exported="false" />
+        <activity
             android:name=".AddDrinkActivity"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             android:label="添加饮品"

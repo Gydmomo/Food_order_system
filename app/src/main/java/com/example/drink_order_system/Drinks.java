@@ -9,7 +9,8 @@ public class Drinks {
 	private float price;
 	private String description;
 	private String imagePath; // 替换原来的 imageResId
-
+	private int shopId; // 新增字段
+	private String shopName;
 	public Drinks(int drinkId, String name, String type, float price, String description, String imagePath) {
 		this.drinkId = drinkId;
 		this.name = name;
@@ -19,6 +20,30 @@ public class Drinks {
 		this.imagePath = imagePath;
 	}
 
+	public Drinks(int drinkId, String name, String type, float price, String description, String imagePath, int shopId) {
+		this.drinkId = drinkId;
+		this.name = name;
+		this.type = type;
+		this.price = price;
+		this.description = description;
+		this.imagePath = imagePath;
+		this.shopId = shopId;
+	}
+
+	public int getShopId() {
+		return shopId;
+	}
+
+	public void setShopId(int shopId) {
+		this.shopId = shopId;
+	}
+	public String getShopName() {
+		return shopName;
+	}
+
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
 	// region Getter Methods
 	public int getDrinkId() { return drinkId; }
 	public String getName() { return name; }

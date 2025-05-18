@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-
+import androidx.fragment.app.Fragment;
 public class BillFragment extends android.app.Fragment {
 
     private String userName;
@@ -61,6 +61,15 @@ public class BillFragment extends android.app.Fragment {
     public List<Order> loadOrdersFromDatabase() {
         List<Order> orders = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
+        // 新增：获取商家的店铺ID
+        int shopId = -1;
+        if (isMerchant) {
+            shopId = getShopIdByUsername(db, userName);
+            if (shopId == -1) {
+                // 商家还没有店铺的情况处理
+                return orders;
+            }
+        }
 
         String[] projection = {
                 DatabaseHelper.COLUMN_ORDER_ID,
@@ -71,21 +80,29 @@ public class BillFragment extends android.app.Fragment {
                 DatabaseHelper.COLUMN_USERNAME
         };
 
-        String selection = DatabaseHelper.COLUMN_USERNAME + " = ?";
-        String[] selectionArgs = {userName};
+        // 构建查询条件
+        String selection = null;
+        String[] selectionArgs = null;
 
         if (isMerchant) {
-            // 商家查看所有订单
-            selection = null;
-            selectionArgs = null;
+            // 商家查询自己店铺的订单
+            selection = "shop_id = ?";
+            selectionArgs = new String[]{String.valueOf(shopId)};
         } else {
-            // 普通用户查看自己的订单
+            // 普通用户查询自己的订单
             selection = DatabaseHelper.COLUMN_USERNAME + " = ?";
             selectionArgs = new String[]{userName};
         }
         Cursor cursor = db.query(
                 DatabaseHelper.TABLE_ORDERS,
-                projection,
+                new String[]{
+                        DatabaseHelper.COLUMN_ORDER_ID,
+                        DatabaseHelper.COLUMN_ORDER_DATE,
+                        DatabaseHelper.COLUMN_TOTAL,
+                        DatabaseHelper.COLUMN_TAKE_AWAY,
+                        "status",
+                        DatabaseHelper.COLUMN_USERNAME
+                },
                 selection,
                 selectionArgs,
                 null,
@@ -107,7 +124,7 @@ public class BillFragment extends android.app.Fragment {
             String orderUser = cursor.getString(
                     cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_USERNAME)
             );
-            String status1 = takeAway == 1 ? "外带" : "堂食";
+            String status1 = takeAway == 1 ? "外卖" : "堂食";
             String details = loadOrderDetails(db, orderId);
             String formattedTotal = String.format("%.1f", total);
             String dateText;
@@ -129,7 +146,26 @@ public class BillFragment extends android.app.Fragment {
         db.close();
         return orders;
     }
+    // 新增方法：根据用户名获取店铺ID
+    private int getShopIdByUsername(SQLiteDatabase db, String username) {
+        String[] projection = {DatabaseHelper.COLUMN_SHOP_ID};
+        String selection = DatabaseHelper.COLUMN_USERNAME + " = ?";
 
+        Cursor cursor = db.query(
+                DatabaseHelper.TABLE_SHOPS,
+                projection,
+                selection,
+                new String[]{username},
+                null, null, null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int shopId = cursor.getInt(0);
+            cursor.close();
+            return shopId;
+        }
+        return -1;
+    }
     private String loadOrderDetails(SQLiteDatabase db, String orderId) {
         StringBuilder details = new StringBuilder();
 

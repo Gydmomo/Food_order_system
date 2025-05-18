@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- 用户信息 -->
+    <!-- 用户基本信息 -->
     <TextView
         android:id="@+id/tv_username"
         android:layout_width="match_parent"
@@ -19,15 +19,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="16dp"/>
 
-    <!-- 退出按钮 -->
-    <Button
-        android:id="@+id/btn_logout"
+    <!-- 个人信息列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_profiles"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:scrollbars="vertical"/>
+
+    <!-- 操作按钮组 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="退出登录"
-        android:backgroundTint="#FF4444"
-        android:textColor="#FFFFFF"/>
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btn_add_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="新增个人信息"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF"/>
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="退出登录"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#FF4444"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
 
 </LinearLayout>

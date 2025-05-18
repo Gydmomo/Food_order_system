@@ -14,7 +14,13 @@
         android:textColor="@color/black"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"/>
-
+    <Spinner
+        android:id="@+id/info_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"
+        android:prompt="@string/select_info_prompt"/>
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"

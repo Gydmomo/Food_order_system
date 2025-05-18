@@ -16,4 +16,7 @@
     <string name="drinks">饮品管理</string>
     <string name="orders">订单处理</string>
     <string name="profile">商家中心</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="select_info_prompt">选择配送信息</string>
 </resources>

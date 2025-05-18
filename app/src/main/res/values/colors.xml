@@ -15,5 +15,12 @@
     <color name="green_light">#00AF87</color>
     <color name="gray">#EAEAEA</color>
     <color name="gray_text">#9B9B9B</color>
+    <!-- 基础文本颜色 -->
+    <color name="primary_text">#DE000000</color> <!-- 87% 黑 -->
+    <color name="secondary_text">#8A000000</color> <!-- 54% 黑 -->
+
+    <!-- 图标颜色 -->
+    <color name="icon_gray">#757575</color>
+    <color name="icon_red">#F44336</color>
 
 </resources>
